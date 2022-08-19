@@ -9,7 +9,8 @@ class PlayersController < ApplicationController
   end
 
   def index
-    @players = Player.all
+    # Not finished, but supports most scenarios!
+    @players = PlayersFilterService.new(Player.all, filter_params[:filters]).filter
 
     respond_to do |format|
       format.html { render json: @players.to_json }
@@ -18,6 +19,10 @@ class PlayersController < ApplicationController
   end
 
   private
+
+  def filter_params
+    params.permit(filters: [:property, :operator, { values: [] }])
+  end
 
   def set_player
     @player = Player.find(params[:id])
