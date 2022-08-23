@@ -23,4 +23,5 @@ group :test do
   gem 'database_cleaner'
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
   gem 'rspec-rails'
+  gem 'simplecov'
 end
