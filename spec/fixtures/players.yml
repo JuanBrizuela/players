@@ -1,6 +1,18 @@
-sample:
+test:
   external_id: <%= Faker::Alphanumeric.alphanumeric %>
   first_name: <%= Faker::Name.first_name %>
   last_name: <%= Faker::Name.last_name %>
   age: <%= 20 + rand(25) %>
   position: <%= %i[PS RP CF SP SS 1B RF C LF 3B 2B DH INF].sample %>
+young_guy:
+  external_id: <%= Faker::Alphanumeric.alphanumeric %>
+  first_name: <%= Faker::Name.first_name %>
+  last_name: <%= Faker::Name.last_name %>
+  age: 20
+  position: PS
+veteran:
+  external_id: <%= Faker::Alphanumeric.alphanumeric %>
+  first_name: <%= Faker::Name.first_name %>
+  last_name: <%= Faker::Name.last_name %>
+  age: 40
+  position: RP
