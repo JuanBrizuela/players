@@ -11,14 +11,15 @@ class PlayersFilterService
   def filter
     return scope unless filters
 
-    filters.reduce(scope) do |scope, f|
-      scope = send("filter_by_#{f[:property]}", f[:operator], f[:values])
+    filters.reduce(scope) do |scope, filter|
+      filter_method = "filter_by_#{filter[:property]}"
+      scope = send(filter_method, filter[:operator], filter[:values])
     end
   end
 
   private
 
-  # Sport is not a field :0
+  # Sport is not a field
   # def filter_by_sport(operator, values)
   #   return scope unless ["eq"].include?(operator)
 
@@ -26,12 +27,12 @@ class PlayersFilterService
   # end
 
   def filter_by_age(operator, values)
-    return scope unless ["eq", "btw", "gt", "ls"].include?(operator)
+    return scope unless ["eq", "btw", "gt", "lt"].include?(operator)
 
     case operator
     when "eq" then scope.where(age: values)
-    when "gt" then scope.where("age > ?", values)
-    when "lt" then scope.where("age < ?", values)
+    when "gt" then scope.where("age > ?", values[0])
+    when "lt" then scope.where("age < ?", values[0])
     when "btw" then scope.where("age BETWEEN ? AND ?", values[0], values[1])
     else scope
     end
@@ -48,8 +49,7 @@ class PlayersFilterService
 
     case operator
     when "eq" then scope.where(last_name: values)
-    # I know this is unsafe, but wanted to get it working by now!
-    when "match" then scope.where("last_name LIKE '#{values[0]}'")
+    when "match" then scope.where("last_name LIKE ?", "#{values[0]}%")
     else scope
     end
   end

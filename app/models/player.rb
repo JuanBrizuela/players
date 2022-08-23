@@ -9,4 +9,16 @@ class Player < ApplicationRecord
   def sport
     %i[baseball basketball football].sample
   end
+
+  def name_brief
+    case sport
+    when :baseball then "#{first_name[0]&.upcase}., #{last_name[0]&.upcase}."
+    when :basketball then "#{first_name&.capitalize}, #{last_name[0]&.upcase}."
+    when :football then "#{first_name[0]&.upcase}, #{last_name&.capitalize}."
+    end
+  end
+
+  def to_json
+    ActiveModelSerializers::SerializableResource.new(self).to_json
+  end
 end

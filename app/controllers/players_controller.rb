@@ -9,7 +9,6 @@ class PlayersController < ApplicationController
   end
 
   def index
-    # Not finished, but supports most scenarios!
     @players = PlayersFilterService.new(Player.all, filter_params[:filters]).filter
 
     respond_to do |format|
