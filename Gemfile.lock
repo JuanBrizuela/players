@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: 4ffc714029c1fe22eb0cf091295afa26cb5fa70c
+  branch: master
+  specs:
+    faker (2.22.0)
+      i18n (>= 1.8.11, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -46,6 +54,11 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_model_serializers (0.10.13)
+      actionpack (>= 4.1, < 7.1)
+      activemodel (>= 4.1, < 7.1)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
     activejob (7.0.3.1)
       activesupport (= 7.0.3.1)
       globalid (>= 0.3.6)
@@ -70,6 +83,8 @@ GEM
     bootsnap (1.13.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    case_transform (0.2)
+      activesupport
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     database_cleaner (2.0.1)
@@ -96,6 +111,7 @@ GEM
     io-console (0.5.11)
     irb (1.4.1)
       reline (>= 0.3.0)
+    jsonapi-renderer (0.2.2)
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -207,9 +223,11 @@ PLATFORMS
   x86_64-darwin-21
 
 DEPENDENCIES
+  active_model_serializers
   bootsnap
   database_cleaner
   debug
+  faker!
   puma (~> 5.0)
   rails (~> 7.0.3)
   rest-client
